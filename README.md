@@ -13,4 +13,8 @@ If you already have installed Pscx from the PowerShell Gallery, you can update P
 Update-Module Pscx
 ```
 
-## 2.2 
+## 2.2 Run Script
+For example:
+```powershell
+powershell -ExecutionPolicy RemoteSigned -File msvc2017-Qt5.15.2-x86-static-mt.ps1
+```
