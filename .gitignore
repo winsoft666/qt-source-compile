@@ -1,3 +1,5 @@
 build/
 qt5-source/
 *-temp/
+temp/
+output/
