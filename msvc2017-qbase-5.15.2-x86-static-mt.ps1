@@ -96,34 +96,30 @@ If(!(Test-Path "$build_temp_folder")) {
 pushd $build_temp_folder
 
 #& "$qt_src_folder\qtbase\configure.bat" -platform win32-msvc -list-features
-
-& "$qt_src_folder\qtbase\configure.bat" --help
-exit
+#& "$qt_src_folder\qtbase\configure.bat" --help
 
 & "$qt_src_folder\qtbase\configure.bat" -silent -debug-and-release -opensource -confirm-license `
-    -platform win32-msvc -static -static-runtime -no-opengl -no-dbus -no-icu -no-sql-sqlite -no-sql-sqlite2 -no-sql-odbc `
+    -platform win32-msvc -static -static-runtime `
     -nomake examples -nomake tests -make libs `
+    -mp -optimize-size -strip -ltcg -no-pch `
     -skip qt3d -skip qtquick3d -skip qtactiveqt -skip qtandroidextras -skip qtcanvas3d -skip qtcharts -skip qtconnectivity `
     -skip qtdatavis3d -skip qtdoc -skip qtdocgallery -skip qtfeedback -skip qtgamepad -skip qtlocation -skip qtdeclarative `
     -skip qtpurchasing -skip qtquickcontrols -skip qtquickcontrols2 -skip qtqa -skip qtrepotools -skip qtwebsockets `
-    -skip qtremoteobjects -skip qtscxml -skip qtsensors -skip qtserialbus -skip qttools -skip qtquicktimeline `
+    -skip qtremoteobjects -skip qtscxml -skip qtsensors -skip qtserialbus -skip qtquicktimeline `
     -skip qtspeech -skip qtvirtualkeyboard -skip qtwebview -skip qtwebengine -skip webchannel -skip qtpim `
     -skip qtwebglplugin -skip qtwayland -skip qtxmlpatterns -skip qtx11extras `
     -skip qtscript -skip qtmacextras `
-    -qt-harfbuzz -qt-doubleconversion -qt-zlib -qt-libpng -qt-libjpeg `
-    -mp -optimize-size -strip -ltcg -no-pch `
-    -no-feature-buttongroup -no-feature-calendarwidget -no-feature-commandlinkbutton -no-feature-contextmenu `
-    -no-feature-datetimeedit -no-feature-dial -no-feature-dockwidget -no-feature-fontcombobox `
-    -no-feature-formlayout -no-feature-graphicseffect -no-feature-graphicsview -no-feature-keysequenceedit -no-feature-lcdnumber `
-    -no-feature-mainwindow -no-feature-mdiarea -no-feature-menu -no-feature-menubar -no-feature-printpreviewwidget `
-    -no-feature-resizehandler -no-feature-rubberband -no-feature-sizegrip -no-feature-splashscreen `
-    -no-feature-splitter -no-feature-stackedwidget -no-feature-statusbar -no-feature-statustip -no-feature-syntaxhighlighter `
-    -no-feature-tablewidget -no-feature-textbrowser -no-feature-toolbar -no-feature-toolbox -no-feature-toolbutton -no-feature-treewidget `
-    -no-feature-validator -no-feature-colordialog -no-feature-dialogbuttonbox -no-feature-printdialog -no-feature-printpreviewdialog `
+    -no-harfbuzz -no-freetype -qt-doubleconversion  `
+    -no-opengl -no-egl -no-angle -no-combined-angle-lib -no-libudev -no-evdev -no-libinput -no-mtdev -no-tslib `
+    -no-bundled-xcb-xinput -no-xkbcommon `
+    -no-dbus -no-icu -no-sql-sqlite -no-sql-sqlite2 -no-sql-odbc `
+    -qt-zlib -qt-libpng -qt-libjpeg `
+    -no-feature-graphicseffect -no-feature-graphicsview 
     -prefix $prefix_folder `
     -openssl-linked -I $openssl_include_folder -L $openssl_libs_folder `
     OPENSSL_LIBS="-lUser32 -lAdvapi32 -lGdi32 -lWS2_32 -lCRYPT32 -llibcrypto32 -llibssl32"
 
+pause
 
 # Compile.
 nmake
