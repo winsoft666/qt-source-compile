@@ -13,6 +13,9 @@ If you already have installed Pscx from the PowerShell Gallery, you can update P
 Update-Module Pscx
 ```
 
+## 2.2 python27.dll
+Copy tools\Python27\python27.dll to `C:\Windows\system32` folder.
+
 ## 2.2 Run Script
 For example:
 ```powershell
